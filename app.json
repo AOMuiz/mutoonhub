@@ -5,7 +5,12 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "7ad15c75-1554-4aa4-993e-19d5f4ad4bb0"
+      }
+    }
   },
   "name": "mutoonh"
 }
