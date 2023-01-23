@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions, View } from "react-native";
-// import Pdf from "react-native-pdf";
+import Pdf from "react-native-pdf";
 
 const ReadBook = ({ route }) => {
   const bookUri = route.params;
@@ -9,7 +9,7 @@ const ReadBook = ({ route }) => {
   };
   return (
     <View style={styles.container}>
-      {/* <Pdf
+      <Pdf
         source={source}
         trustAllCerts={false}
         onLoadComplete={(numberOfPages, filePath) => {
@@ -25,7 +25,7 @@ const ReadBook = ({ route }) => {
           console.log(`Link pressed: ${uri}`);
         }}
         style={styles.pdf}
-      /> */}
+      />
     </View>
   );
 };
