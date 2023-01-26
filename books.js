@@ -9,7 +9,7 @@ export const MUTOONS = [
     bookUri:
       "https://abdurrahmanorg.files.wordpress.com/2019/06/kt-english.pdf",
     audioUri:
-      "https://archive.org/details/Mutun_Sawtiya/007-Ketab_attawheed_lite.mp3",
+      "https://archive.org/download/Mutun_Sawtiya/007-Ketab_attawheed_lite.mp3",
   },
   {
     id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
@@ -21,7 +21,7 @@ export const MUTOONS = [
     bookUri:
       "https://abdurrahmanorg.files.wordpress.com/2014/09/sharh-assunnah-al-barbahary-arabic-matn.pdf",
     audioUri:
-      "https://archive.org/details/Mutun_Sawtiya/047-Sharh_assunnah_al-barbahary.mp3",
+      "https://archive.org/download/Mutun_Sawtiya/047-Sharh_assunnah_al-barbahary.mp3",
   },
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
@@ -33,6 +33,6 @@ export const MUTOONS = [
     bookUri:
       "https://abukhadeejah.com/wp-content/uploads/2020/07/Usul-As-Sunnah-Text-2.0.pdf",
     audioUri:
-      "https://archive.org/details/Mutun_Sawtiya/045-Oussoul_assuna.mp3",
+      "https://archive.org/download/Mutun_Sawtiya/045-Oussoul_assuna.mp3",
   },
 ];
