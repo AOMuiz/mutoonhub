@@ -5,6 +5,7 @@ import { MaterialCommunityIcons, Feather } from "@expo/vector-icons";
 import PlayerButton from "../components/PlayerButton";
 import { Audio } from "expo-av";
 import colors from "../config/colors";
+import { humanReadableDuration } from "../services/utils";
 
 const { width } = Dimensions.get("window");
 
@@ -13,25 +14,24 @@ const Player = ({ sound, book, modalVisible }) => {
   const [playbackInstance, setPlaybackInstance] = useState(null);
   const [soundObj, setSoundObj] = useState(null);
   const [currentPosition, setCurrentPosition] = useState(0);
+  const [duration, setDuration] = useState({});
   const [volume, setVolume] = useState(1);
 
   const handleAudioPress = async () => {
-    // const playbackObj = new Audio.Sound();
     if (soundObj === null) {
       console.log("Loading Sound");
-
       try {
         const { sound: playbackObj, status } = await Audio.Sound.createAsync(
           { uri: sound.uri },
           { shouldPlay: true }
         );
-        // const status = await playbackObj.loadAsync(
-        //   { uri: sound.uri },
-        //   { shouldPlay: true }
-        // );
         setPlaybackInstance(playbackObj);
         setSoundObj(status);
-        setIsPlaying(true);
+        setDuration({
+          positionMillis: status.positionMillis,
+          durationMillis: status.durationMillis,
+        });
+        setIsPlaying(status.isPlaying && status.isBuffering);
         console.log({ isPlaying });
         console.log({ status });
         console.log({ soundObj });
@@ -70,12 +70,23 @@ const Player = ({ sound, book, modalVisible }) => {
 
   const handlePlaybackPosition = (value) => {
     setCurrentPosition(value);
-    soundObj.setPositionAsync(value);
+    playbackInstance.setPositionAsync(value);
   };
 
   const handlePrevious = () => {};
   const handleNext = () => {};
   const handleVolume = () => {};
+
+  useEffect(() => {
+    if (soundObj?.isLoaded) {
+      playbackInstance.setOnPlaybackStatusUpdate((status) =>
+        setDuration({
+          positionMillis: status.positionMillis,
+          durationMillis: status.durationMillis,
+        })
+      );
+    }
+  }, [soundObj]);
 
   useEffect(() => {
     return playbackInstance
@@ -116,14 +127,22 @@ const Player = ({ sound, book, modalVisible }) => {
               paddingHorizontal: 15,
             }}
           >
-            <Text>10:05</Text>
-            <Text>20:10</Text>
+            <Text>
+              {duration.positionMillis
+                ? humanReadableDuration(duration.positionMillis)
+                : "00:00"}
+            </Text>
+            <Text>
+              {duration.durationMillis
+                ? humanReadableDuration(duration.durationMillis)
+                : "00:00"}
+            </Text>
           </View>
           <Slider
             style={{ width: width, height: 40 }}
             minimumValue={0}
             maximumValue={1}
-            onValueChange={handlePlaybackPosition}
+            onValueChange={(value) => handlePlaybackPosition(value)}
             value={currentPosition}
             minimumTrackTintColor={colors.P100}
             maximumTrackTintColor={"black"}
