@@ -14,60 +14,11 @@ import AppText from "../components/AppText";
 import colors from "../config/colors";
 import AppButton from "../components/AppButton";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Audio } from "expo-av";
 import Player from "./PlayerScreen";
-// import TrackPlayer, { State } from "react-native-track-player";
 
 const BookDetailsScreen = ({ route, navigation }) => {
   const book = route.params;
-  const [soundObj, setSoundObj] = useState();
-  const [statusObj, setStatusObj] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
-
-  const playSound = async () => {
-    //first time play
-    if (statusObj === null) {
-      console.log("Loading Sound");
-      const { sound: playbackObject } = await Audio.Sound.createAsync(
-        {
-          uri: book.audioUri,
-        },
-        { shouldPlay: true }
-      );
-      setSoundObj(playbackObject);
-      console.log({ playbackObject });
-      console.log("Playing Sound");
-      console.log({ soundObj });
-      const status = await playbackObject.playAsync();
-      setStatusObj(status);
-      console.log({ status });
-      return;
-    }
-
-    //pause
-    if (statusObj.isLoaded && statusObj.isPlaying) {
-      console.log("already playing");
-      const status = await soundObj.pauseAsync();
-      setSoundObj(status);
-      console.log({ soundObj });
-      console.log({ statusObj });
-      return;
-    }
-
-    //resume
-    if (statusObj.isLoaded && !statusObj.isPlaying) {
-      console.log("resume");
-    }
-  };
-
-  useEffect(() => {
-    return soundObj
-      ? () => {
-          console.log("Unloading Sound");
-          soundObj.unloadAsync();
-        }
-      : undefined;
-  }, [soundObj]);
 
   return (
     <Screen>
@@ -80,13 +31,11 @@ const BookDetailsScreen = ({ route, navigation }) => {
         }}
       >
         <View style={styles.modalView}>
-          <Player sound={book.audioUri} />
-          <Pressable
-            style={[styles.button, styles.buttonClose]}
-            onPress={() => setModalVisible(!modalVisible)}
-          >
-            <Text style={styles.textStyle}>Hide Modal</Text>
-          </Pressable>
+          <Player
+            sound={book.audio}
+            book={book}
+            modalVisible={() => setModalVisible(!modalVisible)}
+          />
         </View>
       </Modal>
       <ScrollView style={styles.container}>
@@ -98,7 +47,7 @@ const BookDetailsScreen = ({ route, navigation }) => {
         <View style={styles.actions}>
           <AppButton
             title={"Play Audio"}
-            onPress={playSound}
+            onPress={() => setModalVisible(true)}
             Icon={
               <MaterialCommunityIcons
                 name="play-circle"
@@ -123,12 +72,6 @@ const BookDetailsScreen = ({ route, navigation }) => {
             textStyle={{ color: colors.primary }}
           />
         </View>
-        <Pressable
-          style={[styles.button, styles.buttonOpen]}
-          onPress={() => setModalVisible(true)}
-        >
-          <Text style={styles.textStyle}>Show Modal</Text>
-        </Pressable>
         <View style={styles.summaryContainer}>
           <AppText style={styles.summaryTitle}>Summary</AppText>
           <Text style={styles.summary}>{book.summary}</Text>

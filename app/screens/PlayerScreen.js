@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { View, StyleSheet, Text, Dimensions, Slider } from "react-native";
 import Screen from "../components/Screen";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons, Feather } from "@expo/vector-icons";
 import PlayerButton from "../components/PlayerButton";
 import { Audio } from "expo-av";
 import colors from "../config/colors";
 
 const { width } = Dimensions.get("window");
 
-const Player = ({ sound }) => {
+const Player = ({ sound, book, modalVisible }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [playbackInstance, setPlaybackInstance] = useState(null);
   const [soundObj, setSoundObj] = useState(null);
@@ -16,28 +16,44 @@ const Player = ({ sound }) => {
   const [volume, setVolume] = useState(1);
 
   const handleAudioPress = async () => {
+    // const playbackObj = new Audio.Sound();
     if (soundObj === null) {
       console.log("Loading Sound");
-      const playbackObj = new Audio.Sound();
-      const status = await playbackObj.loadAsync(
-        { uri: sound },
-        { shouldPlay: true }
-      );
-      console.log({ status });
-      setPlaybackInstance(playbackObj);
-      setSoundObj(status);
-      setIsPlaying(status.isPlaying);
-      console.log({ status });
+
+      try {
+        const { sound: playbackObj, status } = await Audio.Sound.createAsync(
+          { uri: sound.uri },
+          { shouldPlay: true }
+        );
+        // const status = await playbackObj.loadAsync(
+        //   { uri: sound.uri },
+        //   { shouldPlay: true }
+        // );
+        setPlaybackInstance(playbackObj);
+        setSoundObj(status);
+        setIsPlaying(true);
+        console.log({ isPlaying });
+        console.log({ status });
+        console.log({ soundObj });
+      } catch (error) {
+        console.log({ error });
+      }
       return;
     }
 
     //pause
     if (soundObj.isLoaded && soundObj.isPlaying) {
       console.log("already playing");
-      const status = await playbackInstance.pauseAsync();
-      setSoundObj(status);
-      setIsPlaying(status.isPlaying);
-      console.log({ status });
+      try {
+        const status = await playbackInstance.pauseAsync();
+        setSoundObj(status);
+        setIsPlaying(status.isPlaying);
+        console.log({ status });
+        console.log({ isPlaying });
+        console.log({ soundObj });
+      } catch (error) {
+        console.log(error);
+      }
       return;
     }
 
@@ -47,8 +63,14 @@ const Player = ({ sound }) => {
       const status = await playbackInstance.playAsync();
       setSoundObj(status);
       setIsPlaying(status.isPlaying);
+      console.log({ isPlaying });
       return;
     }
+  };
+
+  const handlePlaybackPosition = (value) => {
+    setCurrentPosition(value);
+    soundObj.setPositionAsync(value);
   };
 
   const handlePrevious = () => {};
@@ -68,11 +90,13 @@ const Player = ({ sound }) => {
     <Screen>
       <View style={styles.container}>
         <View style={styles.audioCountContainer}>
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Text style={{ fontWeight: "bold" }}>From Playlist: </Text>
-            <Text>Mutoon Taalib-l-Ilm</Text>
+            <Text>{book.playlist}</Text>
           </View>
-          <Text style={styles.audioCount}>10/40</Text>
+          <Text style={styles.audioCount}>
+            <Feather name="x" size={24} color="black" onPress={modalVisible} />
+          </Text>
         </View>
         <View style={styles.midBannerContainer}>
           <MaterialCommunityIcons
@@ -83,7 +107,7 @@ const Player = ({ sound }) => {
         </View>
         <View style={styles.audioPlayerContainer}>
           <Text numberOfLines={1} style={styles.audioTitle}>
-            Sharhu Sunnah
+            {book.title}
           </Text>
           <View
             style={{
@@ -92,35 +116,39 @@ const Player = ({ sound }) => {
               paddingHorizontal: 15,
             }}
           >
-            <Text>20:10</Text>
             <Text>10:05</Text>
+            <Text>20:10</Text>
           </View>
-          {/* <Slider
+          <Slider
             style={{ width: width, height: 40 }}
             minimumValue={0}
             maximumValue={1}
-            // onValueChange={handlePlaybackPosition}
+            onValueChange={handlePlaybackPosition}
             value={currentPosition}
-            minimumTrackTintColor={"pink"}
-            maximumTrackTintColor={"purple"}
-            onValueChange={(value) => {}}
+            minimumTrackTintColor={colors.P100}
+            maximumTrackTintColor={"black"}
+            // onValueChange={(value) => {}}
             onSlidingStart={async () => {}}
             onSlidingComplete={async (value) => {}}
           />
-          <Slider
-            minimumValue={0}
-            maximumValue={1}
-            onValueChange={handleVolume}
-            value={volume}
-          /> */}
           <View style={styles.audioControllers}>
-            <PlayerButton iconType="PREV" onPress={handlePrevious} />
+            <PlayerButton
+              iconType="PREV"
+              onPress={handlePrevious}
+              size={30}
+              iconColor={colors.mono3}
+            />
             <PlayerButton
               onPress={handleAudioPress}
               style={{ marginHorizontal: 25 }}
-              iconType={isPlaying ? "PAUSE" : "PLAY"}
+              iconType={!isPlaying ? "PAUSE" : "PLAY"}
             />
-            <PlayerButton iconType="NEXT" onPress={handleNext} />
+            <PlayerButton
+              iconType="NEXT"
+              onPress={handleNext}
+              size={30}
+              iconColor={colors.mono3}
+            />
           </View>
         </View>
       </View>
@@ -139,7 +167,7 @@ const styles = StyleSheet.create({
   audioCountContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: 15,
+    paddingHorizontal: 13,
   },
   container: {
     flex: 1,
