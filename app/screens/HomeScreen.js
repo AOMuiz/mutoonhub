@@ -6,6 +6,8 @@ import Screen from "../components/Screen";
 import colors from "../config/colors";
 
 const HomeScreen = ({ navigation }) => {
+  const displayList = MUTOONS.slice(0, 4);
+
   return (
     <Screen>
       <View style={styles.container}>
@@ -34,7 +36,7 @@ const HomeScreen = ({ navigation }) => {
               </Pressable>
             </View>
           }
-          data={MUTOONS}
+          data={displayList}
           renderItem={({ item }) => (
             <Card
               title={item.title}

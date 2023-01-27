@@ -69,7 +69,7 @@ export const MUTOONS = [
     bookUri:
       "https://abdurrahmanorg.files.wordpress.com/2014/09/arabic-matn-of-nawaaqid-al-islaam.pdf",
     audio: {
-      uri: "https://archive.org/download/Mutun_Sawtiya/045-Oussoul_assuna.mp3",
+      uri: "https://archive.org/download/Mutun_Sawtiya/010-Nawaqid_al-islam_al-10.mp3",
       reciter: "Abu Ahmad shaydhami",
     },
     playlist: "Mutoon Taalib-l-Ilm 1",
@@ -84,7 +84,7 @@ export const MUTOONS = [
     bookUri:
       "https://abdurrahmanorg.files.wordpress.com/2014/09/arabic-matn-of-nawaaqid-al-islaam.pdf",
     audio: {
-      uri: "https://archive.org/download/Mutun_Sawtiya/045-Oussoul_assuna.mp3",
+      uri: "https://archive.org/download/Mutun_Sawtiya/003-Qawaid_4.mp3",
       reciter: "Abu Ahmad shaydhami",
     },
     playlist: "Mutoon Taalib-l-Ilm 1",

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import { View, StyleSheet, Text, Dimensions, Slider } from "react-native";
-import Screen from "../components/Screen";
+import { View, StyleSheet, Text, Dimensions } from "react-native";
+import Slider from "@react-native-community/slider";
 import { MaterialCommunityIcons, Feather, Ionicons } from "@expo/vector-icons";
 import PlayerButton from "../components/PlayerButton";
 import { Audio } from "expo-av";
