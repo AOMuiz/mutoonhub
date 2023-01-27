@@ -2,13 +2,13 @@ import { AntDesign } from "@expo/vector-icons";
 import colors from "../config/colors";
 
 const PlayerButton = (props) => {
-  const { iconType, size = 40, iconColor = colors.primary, onPress } = props;
+  const { iconType, iconSize = 29, iconColor = colors.P50, onPress } = props;
   const getIconName = (type) => {
     switch (type) {
       case "PLAY":
-        return "pausecircleo";
+        return "pausecircle";
       case "PAUSE":
-        return "playcircleo";
+        return "play";
       case "NEXT":
         return "forward";
       case "PREV":
@@ -20,7 +20,7 @@ const PlayerButton = (props) => {
       {...props}
       onPress={onPress}
       name={getIconName(iconType)}
-      size={size}
+      size={iconSize}
       color={iconColor}
     />
   );
