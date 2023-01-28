@@ -1,14 +1,5 @@
-import React, { useEffect, useState } from "react";
-import {
-  Image,
-  Modal,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  Pressable,
-  Alert,
-} from "react-native";
+import React, { useState } from "react";
+import { Image, Modal, ScrollView, StyleSheet, Text, View } from "react-native";
 import Screen from "../components/Screen";
 import AppText from "../components/AppText";
 import colors from "../config/colors";
@@ -26,7 +17,6 @@ const BookDetailsScreen = ({ route, navigation }) => {
         animationType="slide"
         visible={modalVisible}
         onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
           setModalVisible(!modalVisible);
         }}
       >
@@ -60,7 +50,12 @@ const BookDetailsScreen = ({ route, navigation }) => {
           <AppButton
             title={"Read Text"}
             buttonStyle={styles.action}
-            onPress={() => navigation.navigate("ReadBook", book.bookUri)}
+            onPress={() =>
+              navigation.navigate("ReadBook", {
+                bookUri: book.bookUri,
+                title: book.title,
+              })
+            }
             color={"white"}
             Icon={
               <MaterialCommunityIcons

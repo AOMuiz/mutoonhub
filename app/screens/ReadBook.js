@@ -2,7 +2,7 @@ import { StyleSheet, Dimensions, View } from "react-native";
 import Pdf from "react-native-pdf";
 
 const ReadBook = ({ route }) => {
-  const bookUri = route.params;
+  const { bookUri } = route.params;
   const source = {
     uri: bookUri,
     cache: true,

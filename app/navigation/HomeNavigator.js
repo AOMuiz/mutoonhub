@@ -12,8 +12,16 @@ const HomeNavigator = () => (
       options={{ headerShown: false }}
       component={HomeScreen}
     />
-    <Stack.Screen name="BookDetails" component={BookDetailsScreen} />
-    <Stack.Screen name="ReadBook" component={ReadBook} />
+    <Stack.Screen
+      name="BookDetails"
+      component={BookDetailsScreen}
+      options={({ route }) => ({ title: route.params.title })}
+    />
+    <Stack.Screen
+      name="ReadBook"
+      component={ReadBook}
+      options={({ route }) => ({ title: route.params.title })}
+    />
   </Stack.Navigator>
 );
 
