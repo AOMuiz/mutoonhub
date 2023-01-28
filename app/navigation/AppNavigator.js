@@ -7,12 +7,21 @@ import AddBookScreen from "../screens/AddBookScreen";
 import MenuScreen from "../screens/MenuScreen";
 import NewBookButton from "./NewBookButton";
 import HomeNavigator from "./HomeNavigator";
+import colors from "../config/colors";
 
 const Tab = createBottomTabNavigator();
 
 export default function AppNavigator() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        headerTitleStyle: {
+          fontWeight: "500",
+          fontSize: 16,
+          color: colors.N80,
+        },
+      }}
+    >
       <Tab.Screen
         name="Feed"
         component={HomeNavigator}
@@ -27,6 +36,7 @@ export default function AppNavigator() {
         name="Book"
         component={BooksScreen}
         options={{
+          headerTitle: "Explore",
           tabBarIcon: ({ color, size }) => (
             <Feather name="book-open" color={color} size={size} />
           ),

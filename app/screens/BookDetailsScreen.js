@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 3,
   },
-  summaryContainer: { marginVertical: 10 },
+  summaryContainer: { marginBottom: 20 },
   title: { fontWeight: "500", fontSize: 20, marginTop: 10 },
   author: { fontWeight: "400", fontSize: 16, color: colors.medium },
   imageContainer: { justifyContent: "center", alignItems: "center" },
@@ -110,7 +110,13 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     fontWeight: "600",
   },
-  summaryTitle: { color: colors.primary, marginVertical: 5 },
+  summaryTitle: {
+    color: colors.primary,
+    marginVertical: 5,
+    marginBottom: 12,
+    fontSize: 20,
+    fontWeight: "600",
+  },
   summary: {
     fontSize: 16,
     fontWeight: "300",
