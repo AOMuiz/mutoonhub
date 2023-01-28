@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
+import Accordion from "../components/Accordion";
 
 const BooksScreen = () => {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>BooksScreen</Text>
+    <View style={{ flex: 1, justifyContent: "center" }}>
+      <Accordion />
     </View>
   );
 };

@@ -6,6 +6,7 @@ import PlayerButton from "../components/PlayerButton";
 import { Audio } from "expo-av";
 import colors from "../config/colors";
 import { humanReadableDuration } from "../services/utils";
+import PlayerMenuBottom from "../components/PlayerMenuBottom";
 
 const { width } = Dimensions.get("window");
 
@@ -129,7 +130,7 @@ const Player = ({ sound, book, modalVisible }) => {
         <View style={styles.midBannerContainer}>
           <MaterialCommunityIcons
             name="music-circle"
-            size={280}
+            size={250}
             color={colors.secondary}
           />
         </View>
@@ -198,6 +199,7 @@ const Player = ({ sound, book, modalVisible }) => {
             </View>
             <Ionicons name="share-outline" size={24} color={colors.N80} />
           </View>
+          <PlayerMenuBottom />
         </View>
       </View>
     </View>
@@ -224,7 +226,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-
   timeline: {
     paddingVertical: 10,
   },
@@ -252,7 +253,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    paddingBottom: 20,
+    paddingBottom: 17,
   },
 });
 

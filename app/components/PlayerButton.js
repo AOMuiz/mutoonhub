@@ -2,7 +2,7 @@ import { AntDesign } from "@expo/vector-icons";
 import colors from "../config/colors";
 
 const PlayerButton = (props) => {
-  const { iconType, iconSize = 29, iconColor = colors.P50, onPress } = props;
+  const { iconType, iconSize = 26, iconColor = colors.P50, onPress } = props;
   const getIconName = (type) => {
     switch (type) {
       case "PLAY":

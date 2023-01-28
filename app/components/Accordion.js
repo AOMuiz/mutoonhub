@@ -1,29 +1,32 @@
-import React, { useState } from "react";
+import { Ionicons } from "@expo/vector-icons";
+import React, { useState, useEffect } from "react";
 import { FlatList, View, Text, TouchableOpacity } from "react-native";
-
-const items = [
-  {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "Kitab At-Tawheed",
-    author: "Muhammad bn Abdulwahab",
-    playlist: "Aqeedah/Tawhid",
-  },
-  {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "Kitab At-Tawheed",
-    author: "Muhammad bn Abdulwahab",
-    playlist: "Manhaj",
-  },
-];
-
-const playlists = ["Manhaj", "Aqeedah/Tawhid"];
+import { MUTOONS } from "../../books";
+import { Playlist } from "../../categories";
+import colors from "../config/colors";
 
 const Accordion = () => {
   const [activePlaylist, setActivePlaylist] = useState(null);
+  const [items, setItems] = useState([]);
 
   const togglePlaylist = (playlist) => {
     setActivePlaylist(activePlaylist === playlist ? null : playlist);
   };
+
+  // useEffect(() => {
+  //   const filteredItems = MUTOONS.filter((i) =>
+  //     i.playlist.includes(activePlaylist)
+  //   );
+  //   setItems(filteredItems);
+  // }, [activePlaylist]);
+
+  // const handleAccordion = (playlist) => {
+  //   if (activePlaylist === playlist) {
+  //     setActivePlaylist(null);
+  //   } else {
+  //     setActivePlaylist(playlist);
+  //   }
+  // };
 
   const renderItem = ({ item }) => {
     return (
@@ -37,11 +40,25 @@ const Accordion = () => {
 
   const renderPlaylist = (playlist) => {
     const isActive = activePlaylist === playlist;
-    const playlistItems = items.filter((item) => item.playlist === playlist);
+    const playlistItems = MUTOONS.filter((item) => item.playlist === playlist);
+
     return (
+      // {playlistItems &&}
       <View style={styles.playlistContainer}>
-        <TouchableOpacity onPress={() => togglePlaylist(playlist)}>
+        <TouchableOpacity
+          onPress={() => togglePlaylist(playlist)}
+          style={styles.dropList}
+        >
           <Text style={styles.playlistTitle}>{playlist}</Text>
+          <Ionicons
+            name={
+              isActive
+                ? "caret-down-circle-sharp"
+                : "caret-forward-circle-sharp"
+            }
+            size={24}
+            color={colors.accent60}
+          />
         </TouchableOpacity>
         {isActive && (
           <FlatList
@@ -56,7 +73,7 @@ const Accordion = () => {
 
   return (
     <FlatList
-      data={playlists}
+      data={Playlist}
       renderItem={({ item }) => renderPlaylist(item)}
       keyExtractor={(item) => item}
     />
@@ -67,17 +84,28 @@ export default Accordion;
 
 const styles = {
   playlistContainer: {
-    backgroundColor: "#f0f0f0",
-    padding: 10,
+    padding: 12,
     borderBottomWidth: 1,
     borderBottomColor: "#ccc",
+    backgroundColor: colors.white,
+    marginVertical: 7,
+    marginHorizontal: 10,
+    elevation: 2,
+    borderRadius: 6,
+  },
+  dropList: {
+    backgroundColor: colors.white,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   playlistTitle: {
     fontWeight: "bold",
+    color: colors.accent100,
   },
   itemContainer: {
     padding: 10,
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.5,
     borderBottomColor: "#ccc",
   },
   title: {
