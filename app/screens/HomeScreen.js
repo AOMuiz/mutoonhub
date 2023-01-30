@@ -4,6 +4,7 @@ import AppText from "../components/AppText";
 import Card from "../components/Card";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
+import routes from "../navigation/routes";
 
 const HomeScreen = ({ navigation }) => {
   const displayList = MUTOONS.slice(0, 4);
@@ -17,12 +18,12 @@ const HomeScreen = ({ navigation }) => {
             What will you listen to today ?
           </AppText>
         </View>
-        <View>
+        <View style={styles.recommended}>
           <Card
             title={"Usool As-Sunnah"}
             author={"Imam Ahmad"}
             image={require("../../assets/usuulsunnah.png")}
-            onPress={() => navigation.navigate("BookDetails")}
+            onPress={() => navigation.navigate(routes.BOOK_DETAILS)}
             isRecommended={true}
           />
         </View>
@@ -42,7 +43,7 @@ const HomeScreen = ({ navigation }) => {
               title={item.title}
               author={item.author}
               image={item.image}
-              onPress={() => navigation.navigate("BookDetails", item)}
+              onPress={() => navigation.navigate(routes.BOOK_DETAILS, item)}
             />
           )}
           keyExtractor={(item) => item.id}
@@ -61,6 +62,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     color: colors.primary,
   },
+  recommended: { marginVertical: 7 },
   sectionHeader: { color: colors.primary },
   seeAll: { textTransform: "uppercase", color: colors.primary, fontSize: 14 },
   greeting: { fontSize: 24, fontWeight: "600", color: colors.primary },

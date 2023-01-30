@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Image, Modal, ScrollView, StyleSheet, Text, View } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
+import Player from "./PlayerScreen";
 import Screen from "../components/Screen";
 import AppText from "../components/AppText";
-import colors from "../config/colors";
 import AppButton from "../components/AppButton";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import Player from "./PlayerScreen";
+import colors from "../config/colors";
+import routes from "../navigation/routes";
 
 const BookDetailsScreen = ({ route, navigation }) => {
   const book = route.params;
@@ -51,7 +53,7 @@ const BookDetailsScreen = ({ route, navigation }) => {
             title={"Read Text"}
             buttonStyle={styles.action}
             onPress={() =>
-              navigation.navigate("ReadBook", {
+              navigation.navigate(routes.READ_BOOK, {
                 bookUri: book.bookUri,
                 title: book.title,
               })

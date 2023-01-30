@@ -8,6 +8,7 @@ import MenuScreen from "../screens/MenuScreen";
 import NewBookButton from "./NewBookButton";
 import HomeNavigator from "./HomeNavigator";
 import colors from "../config/colors";
+import routes from "./routes";
 
 const Tab = createBottomTabNavigator();
 
@@ -33,7 +34,7 @@ export default function AppNavigator() {
         }}
       />
       <Tab.Screen
-        name="Book"
+        name={routes.EXPLORE}
         component={BooksScreen}
         options={{
           headerTitle: "Explore",
@@ -47,7 +48,9 @@ export default function AppNavigator() {
         component={AddBookScreen}
         options={({ navigation }) => ({
           tabBarButton: () => (
-            <NewBookButton onPress={() => navigation.navigate("AddBook")} />
+            <NewBookButton
+              onPress={() => navigation.navigate(routes.ADD_BOOK)}
+            />
           ),
           tabBarIcon: ({ focused, color, size }) => (
             <MaterialCommunityIcons
@@ -59,7 +62,7 @@ export default function AppNavigator() {
         })}
       />
       <Tab.Screen
-        name="Search"
+        name={routes.SEARCH}
         component={SearchScreen}
         options={{
           tabBarIcon: ({ color, size }) => (

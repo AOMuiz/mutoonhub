@@ -3,10 +3,11 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 
 import AppNavigator from "./app/navigation/AppNavigator";
+import myTheme from "./app/navigation/navigationTheme";
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={myTheme}>
       <AppNavigator />
     </NavigationContainer>
   );

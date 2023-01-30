@@ -3,7 +3,7 @@ import Accordion from "../components/Accordion";
 
 const BooksScreen = () => {
   return (
-    <View style={{ flex: 1, justifyContent: "center" }}>
+    <View style={styles.container}>
       <Accordion />
     </View>
   );
@@ -11,4 +11,6 @@ const BooksScreen = () => {
 
 export default BooksScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: { flex: 1, justifyContent: "center" },
+});
