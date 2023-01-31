@@ -1,5 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import { View, StyleSheet, Text, Dimensions } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  Dimensions,
+  ActivityIndicator,
+} from "react-native";
 import { Audio } from "expo-av";
 import Slider from "@react-native-community/slider";
 import { MaterialCommunityIcons, Feather, Ionicons } from "@expo/vector-icons";
@@ -13,6 +19,7 @@ const { width } = Dimensions.get("window");
 
 const Player = ({ sound, book, modalVisible }) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [playbackInstance, setPlaybackInstance] = useState(null);
   const [soundObj, setSoundObj] = useState(null);
   const [currentPosition, setCurrentPosition] = useState(0);
@@ -28,6 +35,7 @@ const Player = ({ sound, book, modalVisible }) => {
   const handleAudioPress = async () => {
     if (soundObj === null) {
       console.log("Loading Sound");
+      setIsLoading(true);
       try {
         const { sound: playbackObj, status } = await Audio.Sound.createAsync(
           { uri: sound.uri },
@@ -39,6 +47,7 @@ const Player = ({ sound, book, modalVisible }) => {
           positionMillis: status.positionMillis,
           durationMillis: status.durationMillis,
         });
+        setIsLoading(false);
         setIsPlaying(status.isPlaying && status.isBuffering);
         console.log({ isPlaying });
         console.log({ status });
@@ -185,12 +194,20 @@ const Player = ({ sound, book, modalVisible }) => {
                 onPress={handlePrevious}
                 iconColor={colors.N80}
               />
-              <PlayerButton
-                onPress={handleAudioPress}
-                style={{ marginHorizontal: 20 }}
-                iconSize={55}
-                iconType={!isPlaying ? "PAUSE" : "PLAY"}
-              />
+              {!isLoading ? (
+                <PlayerButton
+                  onPress={handleAudioPress}
+                  style={{ marginHorizontal: 20 }}
+                  iconSize={55}
+                  iconType={!isPlaying ? "PAUSE" : "PLAY"}
+                />
+              ) : (
+                <ActivityIndicator
+                  size={"large"}
+                  color={colors.P50}
+                  style={{ marginHorizontal: 20 }}
+                />
+              )}
               <PlayerButton
                 iconType="NEXT"
                 onPress={handleNext}

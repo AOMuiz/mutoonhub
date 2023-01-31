@@ -114,7 +114,7 @@ export const MUTOONS = [
     bookUri:
       "https://archive.org/download/40HadithOfImamNawawi/40%20Hadith%20of%20Imam%20Nawawi.pdf",
     audio: {
-      uri: "https://archive.org/download/Mutun_Sawtiya/045-Oussoul_assuna.mp3",
+      uri: "https://ia804500.us.archive.org/15/items/40nawawi_oumma/40nawawi.ogg",
       reciter: "Abu Ahmad shaydhami",
     },
     playlist: ["Mutoon Taalib-l-Ilm 1", "Hadith"],
