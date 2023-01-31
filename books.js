@@ -12,7 +12,22 @@ export const MUTOONS = [
       uri: "https://archive.org/download/Mutun_Sawtiya/007-Ketab_attawheed_lite.mp3",
       reciter: "Abu Ahmad As-shaydhami",
     },
-    playlist: "Aqeedah/Tawhid",
+    playlist: ["Aqeedah/Tawhid", "Mutoon Taalib-l-Ilm 2"],
+  },
+  {
+    id: "bd7acbea-c1b1-46c2-aed5-3ad53acb28ba",
+    title: "Shuroot As-salah",
+    author: "Muhammad bn Abdulwahab",
+    image: require("./assets/kitabtawhid.png"),
+    summary:
+      "This is a translation of the beneficial treatise of Imaam Muhammadbin ‘Abdil-Wahhaab, “Shuroot as-Salaat wa Arkaanuhaa wa Waajibaatuhaa.” In this short treatise, Imaam Muhammad bin ‘Abdil-Wahhaab, may Allah have mercy on him, briefly outlines the nine conditions for the acceptance of one ’s prayer, as well as the fourteen pillars and eight requirements of the prayer, mentioning some of their proofs and evidences from the Book and the Sunnah.",
+    bookUri:
+      "https://www.noor-book.com/book/internal_download/34f205bf8c35eb87369120df8b1e8601c64cb780/2/83266226cc93e830d8bbeb9c88d1ae11",
+    audio: {
+      uri: "https://archive.org/download/Mutun_Sawtiya/002-Chorout-assalah.mp3",
+      reciter: "Abu Ahmad As-shaydhami",
+    },
+    playlist: ["Fiqh", "Mutoon Taalib-l-Ilm 2"],
   },
   {
     id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
@@ -57,7 +72,7 @@ export const MUTOONS = [
       uri: "https://archive.org/download/Mutun_Sawtiya/001-Osoul_3.mp3",
       reciter: "shaydhami",
     },
-    playlist: "Mutoon Taalib-l-Ilm 1",
+    playlist: ["Mutoon Taalib-l-Ilm 1", "Aqeedah/Tawhid"],
   },
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d74",
@@ -72,7 +87,7 @@ export const MUTOONS = [
       uri: "https://archive.org/download/Mutun_Sawtiya/010-Nawaqid_al-islam_al-10.mp3",
       reciter: "Abu Ahmad shaydhami",
     },
-    playlist: "Mutoon Taalib-l-Ilm 1",
+    playlist: ["Mutoon Taalib-l-Ilm 1", "Aqeedah/Tawhid"],
   },
   {
     id: "58694a0f-3da1-471f-bd97-145571e29d74",
@@ -90,14 +105,14 @@ export const MUTOONS = [
     playlist: "Mutoon Taalib-l-Ilm 1",
   },
   {
-    id: "58694a0f-3db1-471f-bd96-145571e29d74",
+    id: "58694a0f-3db1-481f-bd96-145571e29d74",
     title: "Al-Arbaun Nawawi",
     author: "Imam An-Nawawi",
     image: require("./assets/40-hadith.png"),
     summary:
       "The book, “Forty Hadiths” by the great scholar and specialist in many fields of knowledge. Al-Imam Yahya bin Sharaf An-Nawawi may Allah shower blessings on him — contains a collection of narrations with simple expressions entailing comprehensive meanings from the Messenger of Allah (Peace and blessings be upon him), generally called Ahadith al-Jawami’.\n Al-Imam An-Nawawi may Allah shower blessings on him so carefully selected authentic narrations to widely cover the issues of pillars of Islam and Eeman, excellent manners, good conduct and other noble deeds and some fundamentals of Adjudication. And by Allah’s Will, the book has had great positive impacts and found acceptance amongst the Muslims generation after generation. Allah the Almighty Alone knows the number of commentaries and explanations of “Forty Hadith by an An-Nawaw that has been given by the people of knowledge and their students over time.\n ",
     bookUri:
-      "https://abdurrahmanorg.files.wordpress.com/2014/09/arabic-matn-of-nawaaqid-al-islaam.pdf",
+      "https://archive.org/download/40HadithOfImamNawawi/40%20Hadith%20of%20Imam%20Nawawi.pdf",
     audio: {
       uri: "https://archive.org/download/Mutun_Sawtiya/045-Oussoul_assuna.mp3",
       reciter: "Abu Ahmad shaydhami",
@@ -105,14 +120,14 @@ export const MUTOONS = [
     playlist: ["Mutoon Taalib-l-Ilm 1", "Hadith"],
   },
   {
-    id: "58694a0f-3db1-471f-bd96-145576e29d74",
+    id: "58694c0f-3db1-471f-bd96-145576e29d74",
     title: "Muqaddimah Al-Ajrumiyyah",
     author: "Imam Ibn Ajrum",
     image: require("./assets/ajrumiyyah.png"),
     summary:
       "al-Ājurrūmiyyah (Arabic: الْآجُرُّومِيَّةِ) in full Al-Muqaddimah al-Ajurrumiyyah fi Mabadi’ Ilm al-Arabiyyah is a 13th-century book of Arabic grammar (نحو عربي naḥw ʿarabī). Very concise for easy memorization, it formed the foundation of a beginner's education in Classical Arabic learning in Arab societies.\n The text itself although not named as such by the author, has become known as ‘al-Ajrumiyyah. The Ajrumiyyah, is the quintessence of Arabic grammar, its status is largely unchallenged as an excellent introduction to this first field of learning, which every scholar must master before delving into other Arabic literature. We find much attention has been paid to it amongst Arab scholars over a considerable period of time.",
     bookUri:
-      "https://abdurrahmanorg.files.wordpress.com/2014/09/arabic-matn-of-nawaaqid-al-islaam.pdf",
+      "https://dl038.dokumen.tips/file_download/file1/568ca8cd1a28ab186d9ad57e?ext=pdf&vaild=d511fac90f4a6a9f2701caa2afe3b600a3e576d4e98bc4d1ab2b114d9251d86a9c1889b6f87dde43b992ac0e0b3c4d1ff6baec3a4aea0ca36fa62e9f172edec93W7nlqK1tcV5Vlo3TJPreWsuuHe2bbCYpbUerxQJnXa9OqfXxrVukFzbqglEoonmHEQ6X6W14JWjDB1gw0V0fMm0KJZhNPDwMDQyk8%2B58SQ%3D",
     audio: {
       uri: "https://archive.org/download/Mutun_Sawtiya/085-Ajroumiah.mp3",
       reciter: "Abu Ahmad shaydhami",
@@ -120,7 +135,7 @@ export const MUTOONS = [
     playlist: ["Mutoon Taalib-l-Ilm 3", "Arabic"],
   },
   {
-    id: "58694a0f-3db1-471f-bd96-145571e79d74",
+    id: "58694a0f-3db3-471f-bd96-145571e79d74",
     title: "Al-Aqeedah Wasitiyyah",
     author: "Imam Ibn Taymiyyah",
     image: require("./assets/sharh-al-aqida-at-wasitiyyah.jpg"),
@@ -142,7 +157,7 @@ export const MUTOONS = [
     summary:
       "Nawaqid Al Islaam (The Nullifiers) – Matn (Arabic and English Text) & Arabic Audio",
     bookUri:
-      "https://abdurrahmanorg.files.wordpress.com/2014/09/arabic-matn-of-nawaaqid-al-islaam.pdf",
+      "https://dl037.dokumen.tips/file_download/file1/5447e029b1af9f57618b463e?ext=pdf&vaild=b3f3882e8d0d32fe7a3303d484b240f17d8af074216b6d3d8c70ee1628fd640b229874e6c782568536f65ef367a44a8f5f883834d0f120a0abf28ee760a10e3eTMPhyYLC9Al4ns9zMh41jbmE3itbkZoG%2BLvHOySPZcgUiZON03NZ6sQGsLOD%2BkAzNPdZBpq%2FBEjQofWelm9ejivbm9oSBKiUNl03DYfkPAU%3D",
     audio: {
       uri: "https://archive.org/download/Mutun_Sawtiya/087-Matn_binaa_al-afaaal.mp3",
       reciter: "Abu Ahmad shaydhami",
@@ -150,14 +165,29 @@ export const MUTOONS = [
     playlist: ["Arabic"],
   },
   {
-    id: "58694a0f-3db1-471f-bd96-145571e79d74",
-    title: "Lamiyyat-ul-Arab",
-    author: "Imam Ibn Taymiyyah",
+    id: "58694a0f-3db1-471f-bd76-145571e79d74",
+    title: "Molhat al-i3raab",
+    author: "Imam Qaasim A-hareeri",
     image: require("./assets/usuulsunnah.png"),
     summary:
       "Nawaqid Al Islaam (The Nullifiers) – Matn (Arabic and English Text) & Arabic Audio",
     bookUri:
-      "https://abdurrahmanorg.files.wordpress.com/2014/09/arabic-matn-of-nawaaqid-al-islaam.pdf",
+      "https://dl037.dokumen.tips/file_download/file1/55cf8e82550346703b92e7c5?ext=pdf&vaild=7324e0c7fd0b973fc3dea3a1a8dda5ece422520564b2280644ac53bd48c253682c4a2a9130b18a6b61e097e351f91dce9d909ce521826805ecf3803c870f7bf9vSIWfDOZNhV%2FQZVqahHr8vxK6dv2zgMb7n%2BlU4%2FthIU1l9MClF3LUuf3XhyIciVa%2FFlr%2FC7brirZ9xhmw3wENk7Z%2B4hpis5VEpp3Mwk1C10%3D",
+    audio: {
+      uri: "https://archive.org/download/Mutun_Sawtiya/088-Molhat_al-i3raab.mp3",
+      reciter: "Abu Ahmad shaydhami",
+    },
+    playlist: ["Arabic"],
+  },
+  {
+    id: "58694a0f-3db1-471f-bd76-147571e79d74",
+    title: "Matn Al Bayqoniyyah",
+    author: "Imam Al Bayqoniyyah",
+    image: require("./assets/usuulsunnah.png"),
+    summary:
+      "Nawaqid Al Islaam (The Nullifiers) – Matn (Arabic and English Text) & Arabic Audio",
+    bookUri:
+      "https://dl036.dokumen.tips/file_download/file1/55cf939b550346f57b9debbe?ext=pdf&vaild=a023e3eae0aa1e467fa7bf616217242e693fa7243b8b97b93e5ef2c9fe5215cdb98a26bb8873bcd9182afcef06ea27267531b28cdeffc00ca9906b59f052841dMdxY72qhdmDlN9DbpXHO%2BwHBcFLmgjsdizqZHYfBK5YVLlKjMBkFJpKO0L%2FQl%2FjyNb%2BOdFKuQh2x8WwqTzq0dTkEbrQuuB9m2QbXluxXClM%3D",
     audio: {
       uri: "https://archive.org/download/Mutun_Sawtiya/088-Molhat_al-i3raab.mp3",
       reciter: "Abu Ahmad shaydhami",

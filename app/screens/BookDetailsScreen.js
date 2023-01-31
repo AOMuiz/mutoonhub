@@ -32,7 +32,11 @@ const BookDetailsScreen = ({ route, navigation }) => {
       </Modal>
       <ScrollView style={styles.container}>
         <View style={styles.imageContainer}>
-          <Image source={book.image} />
+          <Image
+            source={book.image}
+            resizeMode={"contain"}
+            style={styles.image}
+          />
           <AppText style={styles.title}>{book.title}</AppText>
           <AppText style={styles.author}>By - {book.author}</AppText>
         </View>
@@ -104,6 +108,10 @@ const styles = StyleSheet.create({
   title: { fontWeight: "500", fontSize: 20, marginTop: 10 },
   author: { fontWeight: "400", fontSize: 16, color: colors.medium },
   imageContainer: { justifyContent: "center", alignItems: "center" },
+  image: {
+    height: 250,
+    width: 250,
+  },
   action: { elevation: 5 },
   actions: {
     flexDirection: "row",

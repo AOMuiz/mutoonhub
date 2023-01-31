@@ -1,24 +1,34 @@
+import { useState, useEffect } from "react";
+import {
+  FlatList,
+  View,
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import React, { useState, useEffect } from "react";
-import { FlatList, View, Text, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
 import { MUTOONS } from "../../books";
 import { Playlist } from "../../categories";
 import colors from "../config/colors";
+import routes from "../navigation/routes";
 
 const Accordion = () => {
   const [activePlaylist, setActivePlaylist] = useState(null);
   const [items, setItems] = useState([]);
+  const navigation = useNavigation();
 
   const togglePlaylist = (playlist) => {
     setActivePlaylist(activePlaylist === playlist ? null : playlist);
   };
 
-  // useEffect(() => {
-  //   const filteredItems = MUTOONS.filter((i) =>
-  //     i.playlist.includes(activePlaylist)
-  //   );
-  //   setItems(filteredItems);
-  // }, [activePlaylist]);
+  useEffect(() => {
+    const filteredItems = MUTOONS.filter((i) =>
+      i.playlist.includes(activePlaylist)
+    );
+    setItems(filteredItems);
+  }, [activePlaylist]);
 
   // const handleAccordion = (playlist) => {
   //   if (activePlaylist === playlist) {
@@ -31,9 +41,18 @@ const Accordion = () => {
   const renderItem = ({ item }) => {
     return (
       <View style={styles.itemContainer}>
-        <Text style={styles.title}>
-          {item.title} by {item.author}
-        </Text>
+        <TouchableWithoutFeedback
+          onPress={() =>
+            navigation.navigate("Feed", {
+              screen: routes.BOOK_DETAILS,
+              params: item,
+            })
+          }
+        >
+          <Text style={styles.title}>
+            {item.title} by {item.author}
+          </Text>
+        </TouchableWithoutFeedback>
       </View>
     );
   };
@@ -43,7 +62,6 @@ const Accordion = () => {
     const playlistItems = MUTOONS.filter((item) => item.playlist === playlist);
 
     return (
-      // {playlistItems &&}
       <View style={styles.playlistContainer}>
         <TouchableOpacity
           onPress={() => togglePlaylist(playlist)}
@@ -62,7 +80,7 @@ const Accordion = () => {
         </TouchableOpacity>
         {isActive && (
           <FlatList
-            data={playlistItems}
+            data={items}
             renderItem={renderItem}
             keyExtractor={(item) => item.id}
           />

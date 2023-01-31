@@ -1,12 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { View, StyleSheet, Text, Dimensions } from "react-native";
+import { Audio } from "expo-av";
 import Slider from "@react-native-community/slider";
 import { MaterialCommunityIcons, Feather, Ionicons } from "@expo/vector-icons";
+
 import PlayerButton from "../components/PlayerButton";
-import { Audio } from "expo-av";
-import colors from "../config/colors";
-import { humanReadableDuration } from "../services/utils";
 import PlayerMenuBottom from "../components/PlayerMenuBottom";
+import { humanReadableDuration } from "../services/utils";
+import colors from "../config/colors";
 
 const { width } = Dimensions.get("window");
 
@@ -101,7 +102,8 @@ const Player = ({ sound, book, modalVisible }) => {
           durationMillis: status.durationMillis,
         });
         const position = toSeconds(status.positionMillis);
-        setCurrentPosition(position);
+        const durationSec = toSeconds(status.durationMillis);
+        setCurrentPosition(position / durationSec);
       });
     }
   }, [soundObj, playbackInstance]);
@@ -131,7 +133,7 @@ const Player = ({ sound, book, modalVisible }) => {
           <MaterialCommunityIcons
             name="music-circle"
             size={250}
-            color={colors.secondary}
+            color={isPlaying ? colors.secondary : colors.N10}
           />
         </View>
         <View style={styles.audioPlayerContainer}>
@@ -159,9 +161,7 @@ const Player = ({ sound, book, modalVisible }) => {
             <Slider
               style={{ height: 40 }}
               minimumValue={0}
-              maximumValue={
-                duration.durationMillis && toSeconds(duration.durationMillis)
-              }
+              maximumValue={1}
               onValueChange={(value) => handlePlaybackPosition(value)}
               value={currentPosition}
               minimumTrackTintColor={colors.P50}
